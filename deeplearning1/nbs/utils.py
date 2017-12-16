@@ -90,6 +90,13 @@ def plots(ims, figsize=(12,6), rows=1, interp=False, titles=None):
             sp.set_title(titles[i], fontsize=16)
         plt.imshow(ims[i], interpolation=None if interp else 'none')
 
+def categories_to_onehot(cat_array):
+    a = np.array(cat_array)
+    length = a.size
+    categories = a.max() + 1
+    b = np.zeros((length, categories))
+    b[np.arange(length), a] = 1
+    return b
 
 def do_clip(arr, mx):
     clipped = np.clip(arr, (1-mx)/1, mx)
